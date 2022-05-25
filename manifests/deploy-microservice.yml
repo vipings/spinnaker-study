@@ -2,26 +2,26 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
     labels:
-        app: mild-temper-microservice
+        app: prolonged-viewer-microservice
         stack: frontend
         source: demo
-    name: mild-temper-microservice
+    name: prolonged-viewer-microservice
     namespace: microservices
 spec:
     replicas: 5
     selector:
         matchLabels:
-            run: mild-temper-microservice
+            run: prolonged-viewer-microservice
     template:
         metadata:
             labels:
-                app: mild-temper-microservice
-                run: mild-temper-microservice
+                app: prolonged-viewer-microservice
+                run: prolonged-viewer-microservice
                 source: demo
         spec:
             containers:
-                -   image: 219099013464.dkr.ecr.us-west-2.amazonaws.com/mild-temper-microservice
-                    name: mild-temper-microservice
+                -   image: 219099013464.dkr.ecr.us-west-2.amazonaws.com/prolonged-viewer-microservice
+                    name: prolonged-viewer-microservice
                     ports:
                         -   name: web
                             containerPort: 8080
@@ -31,14 +31,14 @@ kind: Service
 apiVersion: v1
 metadata:
     labels:
-        app: mild-temper-microservice-service
+        app: prolonged-viewer-microservice-service
         stack: frontend
-    name: mild-temper-microservice-service
+    name: prolonged-viewer-microservice-service
     namespace: microservices
 spec:
     selector:
         source: demo
-        app: mild-temper-microservice
+        app: prolonged-viewer-microservice
     ports:
         -   name: web
             protocol: TCP
@@ -62,7 +62,7 @@ spec:
                 paths:
                     -   path: /mild-temper(/|$)(.*)
                         backend:
-                            serviceName: mild-temper-microservice-service
+                            serviceName: prolonged-viewer-microservice-service
                             servicePort: 30201
 
 
